@@ -1,0 +1,40 @@
+body{
+    font-family: Arial, sans-serif;
+    margin: 0; /*remove margem do navegador*/
+    padding: 40px; /* espaço interno ao redor do conteudo */
+}
+
+#produtos{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* responsividade: cada card pode ter no minimo 250px */
+    gap: 20px; /* espaço entre os cards */
+}
+
+#produtos div{
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 10px; /* bordas arredondadas */
+}
+
+.card{
+    padding: 200px;
+    border: 1px solid grey;
+    border-radius: 12px;
+}
+
+.card img{
+    height: 250px;
+    width: 100%;
+    object-fit: contain; /* mostra a imagem inteira e sem deformar */
+}
+
+.preco{
+    font-size: 20px; /* tamanho */
+    font-weight: bold; /* negrito */
+}
+
+.info{
+    display: flex;
+    gap: 15px;
+    justify-content: space-between;
+}
