@@ -1,6 +1,9 @@
 const container = document.querySelector("#produtos");
 const botoes = document.querySelectorAll(".categoria");
+const campoBusca = document.querySelector("#busca");
+
 let categoriaSelecionada = "Todos";
+let textoBusca = "";
 
 fetch("produtos.json")
     .then(resposta => resposta.json())
@@ -10,11 +13,15 @@ fetch("produtos.json")
             container.innerHTML = "";
 
             let produtosFiltrados;
-
+            
             if (categoriaSelecionada === "Todos") {
-                produtosFiltrados = dados;
+                produtosFiltrados = dados.filter(
+                    produto => produto.nome.includes(textoBusca)
+                );
             } else {
-                produtosFiltrados = dados.filter(produto => produto.categoria === categoriaSelecionada);
+                produtosFiltrados = dados.filter(
+                    produto => produto.categoria === categoriaSelecionada
+                );
             }
 
             for (const produto of produtosFiltrados) {
@@ -38,13 +45,18 @@ fetch("produtos.json")
             }
         }
 
-        mostrarProdutos();
+    mostrarProdutos();
 
-        for (const botao of botoes) {
-            botao.addEventListener("click", () => {
-                categoriaSelecionada = botao.textContent;
-                mostrarProdutos();
-            });
-        }
+    for (const botao of botoes) {
+         botao.addEventListener("click", () => {
+            categoriaSelecionada = botao.textContent;
+            mostrarProdutos();
+        });
+    }
+
+    campoBusca.addEventListener("input",() => { 
+        textoBusca = campoBusca.value ; //pega conteúdo que esta dentro do input
+        mostrarProdutos();
+    });
 
     });
