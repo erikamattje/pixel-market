@@ -14,15 +14,14 @@ fetch("produtos.json")
 
             let produtosFiltrados;
             
-            if (categoriaSelecionada === "Todos") {
-                produtosFiltrados = dados.filter(
-                    produto => produto.nome.includes(textoBusca)
-                );
-            } else {
-                produtosFiltrados = dados.filter(
-                    produto => produto.categoria === categoriaSelecionada
-                );
-            }
+            produtosFiltrados = dados.filter(produto => {
+                const correspondeCategoria =
+                    categoriaSelecionada === "Todos" || produto.categoria === categoriaSelecionada;
+
+                const correspondeBusca = produto.nome.includes(textoBusca);
+
+                return correspondeCategoria && correspondeBusca;
+            });
 
             for (const produto of produtosFiltrados) {
                 const card = document.createElement("div");
@@ -49,8 +48,8 @@ fetch("produtos.json")
 
     for (const botao of botoes) {
          botao.addEventListener("click", () => {
-            categoriaSelecionada = botao.textContent;
-            mostrarProdutos();
+            categoriaSelecionada = botao.textContent; //categoria digitada pelo usuário
+            mostrarProdutos(); //executa novamente para atualizar os produtos da página
         });
     }
 

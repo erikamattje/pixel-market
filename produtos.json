@@ -38,5 +38,52 @@
     "categoria": "Jogos",
     "estoque": 16,
     "imagem": "images/hollow-knight.jpg"
+  },
+  {
+    "id": 6,
+    "nome": "Nintendo Switch Headset",
+    "preco": 117.99,
+    "categoria": "Headsets",
+    "estoque": 5,
+    "imagem": "images/headset-switch-fio.jpg"
+  },
+  {
+    "id": 7,
+    "nome": "Headset Cozy Pink",
+    "preco": 135.90,
+    "categoria": "Headsets",
+    "estoque": 15,
+    "imagem": "images/headset-cozy-pink.jpg"
+  },{
+    "id": 8,
+    "nome": "Headset Cozy Lavender",
+    "preco": 135.90,
+    "categoria": "Headsets",
+    "estoque": 9,
+    "imagem": "images/headset-cozy-purple.jpg"
+  },
+  {
+    "id": 9,
+    "nome": "Nintendo Switch Pro Controller",
+    "preco": 399.90,
+    "categoria": "Controles",
+    "estoque": 21,
+    "imagem": "images/controller-pro-switch.jpg"
+  },
+  {
+    "id": 10,
+    "nome": "Controle 8BitDo Ultimate 2",
+    "preco": 299.90,
+    "categoria": "Controles",
+    "estoque": 21,
+    "imagem": "images/controller-8bitdo-ultimate.jpg"
+  },
+  {
+    "id": 11,
+    "nome": "Controle 8BitDo Ultimate 2C",
+    "preco": 189.90,
+    "categoria": "Controles",
+    "estoque": 21,
+    "imagem": "images/controller-8bitdo-ultimate2c.jpg"
   }
 ]
