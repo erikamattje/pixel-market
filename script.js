@@ -10,23 +10,34 @@ fetch("produtos.json")
     .then(dados => {
 
         function mostrarProdutos() {
-            container.innerHTML = "";
+            container.innerHTML = ""; //limpa a div com id produto, que esta em container
 
             let produtosFiltrados;
             
             produtosFiltrados = dados.filter(produto => {
                 const correspondeCategoria =
-                    categoriaSelecionada === "Todos" || produto.categoria === categoriaSelecionada;
+                    categoriaSelecionada === "Todos" || produto.categoria === categoriaSelecionada; //categoria é igual a Todos? || categoria deste produto é igual a categoria que o usuário selecionou?
 
-                const correspondeBusca = produto.nome.includes(textoBusca);
+                const correspondeBusca = produto.nome.includes(textoBusca); //o nome desse produto contém o texto que o usuário pesquisou?
 
                 return correspondeCategoria && correspondeBusca;
             });
 
-            for (const produto of produtosFiltrados) {
-                const card = document.createElement("div");
+            if (produtosFiltrados.length === 0) { 
+                container.innerHTML = `
+                    <div class="sem-produtos">
+                        <img src="images/produto-nao-encontrado.png" alt="Nenhum produto encontrado">
+                        <h2>Nenhum produto encontrado</h2>
+                        <p>Tente buscar outro produto.</p>
+                    </div>
+                `;
+            }
+            
 
-                card.classList.add("card");
+            for (const produto of produtosFiltrados) { //cria os cards no ecommerce
+                const card = document.createElement("div"); //cria a div
+
+                card.classList.add("card"); //adiciona a classe CSS
 
                 card.innerHTML = `
                     <img src="${produto.imagem}" alt="${produto.nome}">

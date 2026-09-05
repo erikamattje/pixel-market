@@ -38,3 +38,25 @@ body{
     gap: 15px;
     justify-content: space-between;
 }
+
+.sem-produtos {
+    text-align: center;
+    margin: 40px auto;
+    padding: 50px;
+    width: 500px;
+    box-sizing: border-box;
+}
+
+.sem-produtos img {
+    width: 180px;
+    display: block;
+    margin: 0 auto 20px; /* 0 em cima, 20px embaixo */
+}
+
+.sem-produtos h2 {
+    margin-bottom: 8px;
+}
+
+.sem-produtos p {
+    margin-top: 0;
+}
