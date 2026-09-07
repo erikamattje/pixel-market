@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Bitcount+Grid+Double:wght@400&display=swap');
+
 body{
     font-family: Arial, sans-serif;
     margin: 0; /*remove margem do navegador*/
@@ -14,6 +16,21 @@ body{
     padding: 20px;
     border: 1px solid #ddd;
     border-radius: 10px; /* bordas arredondadas */
+}
+
+#busca {
+    width: 300px;
+    padding: 10px 15px;
+    border: 1px solid #ddd;
+    border-radius: 20px;
+    font-size: 16px;
+    box-sizing: border-box; /* faz a largura de 300px incluir o padding e a borda*/
+    transition: 0.2s;
+}
+
+#busca:focus {
+    outline: none;
+    border-color: #888;
 }
 
 .card{
@@ -58,5 +75,37 @@ body{
 }
 
 .sem-produtos p {
-    margin-top: 0;
+    margin-top: 0; /*  */
+}
+
+.categoria{
+    font-family: Arial, sans-serif; /* fonte */
+    font-size: 16px; /* tamanho da fonte */
+    font-weight: bold; 
+    padding: 10px 18px; /* cria espaço dentro do botão */
+    border: 1px solid #ddd;
+    border-radius: 20px; 
+    background-color: white;
+    cursor: pointer; /* adiciona cursor de clique quando passar o mouse */
+    transition: 0.2s; /* adiciona suavidade a transição */
+    margin: 20px 0; /* 20 em cima e embaixo */
+}
+
+.categoria:hover{
+    transform: translateY(-2px); /* faz o botão subir 2px */
+}
+
+.categoria.ativo{
+    background-color: rgb(214, 14, 14);
+    color: white;
+}
+
+h1 {
+    font-family: "Bitcount Grid Double", cursive;
+    font-size: 62px;
+    font-weight: 400;
+    text-align: center;
+    color: rgb(214, 14, 14);
+    
+    margin-bottom: 20px;
 }

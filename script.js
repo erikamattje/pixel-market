@@ -4,6 +4,7 @@ const campoBusca = document.querySelector("#busca");
 
 let categoriaSelecionada = "Todos";
 let textoBusca = "";
+botoes[0].classList.add("ativo");
 
 fetch("produtos.json")
     .then(resposta => resposta.json())
@@ -18,7 +19,8 @@ fetch("produtos.json")
                 const correspondeCategoria =
                     categoriaSelecionada === "Todos" || produto.categoria === categoriaSelecionada; //categoria é igual a Todos? || categoria deste produto é igual a categoria que o usuário selecionou?
 
-                const correspondeBusca = produto.nome.includes(textoBusca); //o nome desse produto contém o texto que o usuário pesquisou?
+                const correspondeBusca = produto.nome.toLowerCase().includes(textoBusca.trim().toLowerCase()); //o nome desse produto contém o texto que o usuário pesquisou? Deixa tudo minusculos e sem espaços para ser mais resistente a erros de digitação.
+                
 
                 return correspondeCategoria && correspondeBusca;
             });
@@ -59,6 +61,13 @@ fetch("produtos.json")
 
     for (const botao of botoes) {
          botao.addEventListener("click", () => {
+
+            for (const botao of botoes){
+                botao.classList.remove("ativo"); //remove class ativo do antigo botao selecionado
+            }
+
+            botao.classList.add("ativo"); //adiciona class para o novo botao selecionado
+
             categoriaSelecionada = botao.textContent; //categoria digitada pelo usuário
             mostrarProdutos(); //executa novamente para atualizar os produtos da página
         });
