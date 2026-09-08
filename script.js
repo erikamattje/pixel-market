@@ -52,8 +52,13 @@ fetch("produtos.json")
                         <p>🎮 ${produto.categoria}</p>
                         <p>📦 ${produto.estoque} em estoque</p>
                     </div>
+                    <button class="botao adicionar">
+                        <i data-lucide="shopping-cart"></i>
+                        Adicionar ao carrinho
+                    </button>
                 `;
                 container.appendChild(card);
+                lucide.createIcons();
             }
         }
 

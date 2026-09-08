@@ -6,26 +6,42 @@ body{
     padding: 40px; /* espaço interno ao redor do conteudo */
 }
 
+h1 {
+    font-family: "Bitcount Grid Double", cursive;
+    font-size: 62px;
+    font-weight: 400;
+    text-align: center;
+    color: rgb(214, 14, 14);
+    
+    margin-bottom: 20px;
+}
+
+header {
+    text-align: center;
+    margin-bottom: 30px;   
+}
+
+header img {
+    width: 350px;
+    height: auto;     
+}
+
 #produtos{
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* responsividade: cada card pode ter no minimo 250px */
     gap: 20px; /* espaço entre os cards */
 }
 
-#produtos div{
-    padding: 20px;
-    border: 1px solid #ddd;
-    border-radius: 10px; /* bordas arredondadas */
-}
-
 #busca {
     width: 300px;
-    padding: 10px 15px;
+    padding: 12px 18px;
     border: 1px solid #ddd;
     border-radius: 20px;
     font-size: 16px;
     box-sizing: border-box; /* faz a largura de 300px incluir o padding e a borda*/
     transition: 0.2s;
+    display: block;
+    margin: 20px auto; /* centraliza a pesquisa */
 }
 
 #busca:focus {
@@ -33,10 +49,67 @@ body{
     border-color: #888;
 }
 
+#categoria {
+    margin: 20px 0;
+    text-align: center;
+}
+
+.adicionar {
+    margin-top: 20px;
+    border: none;
+    background-color: rgb(214, 14, 14);
+    color: white;
+    align-self: center;  
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.adicionar svg{
+    width: 20px;
+    height: 20px;
+}
+
+.adicionar:hover{
+    background-color: rgb(192, 1, 1);
+}
+
+.botao {
+    padding: 10px 18px; /* cria espaço dentro do botão */
+    border-radius: 20px;
+    font-size: 16px; /* tamanho da fonte */
+    font-weight: bold;
+    cursor: pointer; /* adiciona cursor de clique quando passar o mouse */
+    transition: 0.2s; /* adiciona suavidade a transição */ 
+}
+
+.categoria{
+    font-family: Arial, sans-serif; /* fonte */
+    border: 1px solid #ddd;
+    background-color: white;       
+}
+
+.categoria:hover{
+    transform: translateY(-2px); /* faz o botão subir 2px */
+}
+
+.categoria.ativo{
+    background-color: rgb(214, 14, 14);
+    color: white;
+}
+
 .card{
-    padding: 200px;
-    border: 1px solid grey;
+    padding: 20px;
+    border: 1px solid #ddd;
     border-radius: 12px;
+    transition: 0.2s;
+    display: flex;
+    flex-direction: column;
+}
+
+.card:hover{
+    transform: translateY(-4px); /*card sobe*/
+    box-shadow: 0 8px 20px rgba(0, 0, 0 , 0.12); /* sombra ao passar o mouse*/
 }
 
 .card img{
@@ -45,15 +118,28 @@ body{
     object-fit: contain; /* mostra a imagem inteira e sem deformar */
 }
 
+.card h2{
+    min-height: 2.4em; /* reserva espaço equivalente a 2,4 vezes o tamanho da fonte do h2 */
+    margin: 10px 0;
+}
+
 .preco{
-    font-size: 20px; /* tamanho */
+    font-size: 22px; /* tamanho */
     font-weight: bold; /* negrito */
+    color: rgb(214, 14, 14);
+    margin: 0; /* retira margem padrão de p */
 }
 
 .info{
     display: flex;
     gap: 15px;
     justify-content: space-between;
+    font-size: 13px;
+    color: #666;
+}
+
+.info p{
+    margin: 0;
 }
 
 .sem-produtos {
@@ -78,34 +164,5 @@ body{
     margin-top: 0; /*  */
 }
 
-.categoria{
-    font-family: Arial, sans-serif; /* fonte */
-    font-size: 16px; /* tamanho da fonte */
-    font-weight: bold; 
-    padding: 10px 18px; /* cria espaço dentro do botão */
-    border: 1px solid #ddd;
-    border-radius: 20px; 
-    background-color: white;
-    cursor: pointer; /* adiciona cursor de clique quando passar o mouse */
-    transition: 0.2s; /* adiciona suavidade a transição */
-    margin: 20px 0; /* 20 em cima e embaixo */
-}
 
-.categoria:hover{
-    transform: translateY(-2px); /* faz o botão subir 2px */
-}
 
-.categoria.ativo{
-    background-color: rgb(214, 14, 14);
-    color: white;
-}
-
-h1 {
-    font-family: "Bitcount Grid Double", cursive;
-    font-size: 62px;
-    font-weight: 400;
-    text-align: center;
-    color: rgb(214, 14, 14);
-    
-    margin-bottom: 20px;
-}
