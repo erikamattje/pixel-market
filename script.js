@@ -2,6 +2,17 @@ const container = document.querySelector("#produtos");
 const botoes = document.querySelectorAll(".categoria");
 const campoBusca = document.querySelector("#busca");
 
+const areaCarrinho = document.createElement("div"); //cria a area do carrinho
+document.body.appendChild(areaCarrinho); // coloca a area do carrinho dentro de body
+areaCarrinho.innerHTML = "<h2>Meu carrinho</h2>";
+
+const carrinho = [];
+const botaoCarrinho = document.querySelector("#carrinho"); //seleciona o elemento do carrinho no HTML
+
+botaoCarrinho.addEventListener("click", () => {
+    areaCarrinho.innerHTML = "";
+});
+
 let categoriaSelecionada = "Todos";
 let textoBusca = "";
 botoes[0].classList.add("ativo");
@@ -37,9 +48,9 @@ fetch("produtos.json")
             
 
             for (const produto of produtosFiltrados) { //cria os cards no ecommerce
-                const card = document.createElement("div"); //cria a div
+                const card = document.createElement("div"); //cria a div e guarda em card
 
-                card.classList.add("card"); //adiciona a classe CSS
+                card.classList.add("card"); //adiciona a classe CSS a essa div
 
                 card.innerHTML = `
                     <img src="${produto.imagem}" alt="${produto.nome}">
@@ -57,8 +68,16 @@ fetch("produtos.json")
                         Adicionar ao carrinho
                     </button>
                 `;
-                container.appendChild(card);
-                lucide.createIcons();
+                container.appendChild(card); //adicione a div que esta em card, dentro de container
+
+                const botaoAdicionar = card.querySelector(".adicionar"); //procura elementos que tenham classe adicionar, somente dentro de card
+
+                botaoAdicionar.addEventListener("click", () => { //dentro do for para criar um evento em cada botão
+                    carrinho.push(produto); //adiciona ao final do array
+                });
+
+
+                lucide.createIcons(); //cria icone do carrinho
             }
         }
 
