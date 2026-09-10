@@ -49,6 +49,24 @@ header img {
     border-color: #888;
 }
 
+#carrinho {
+    padding: 10px 18px;
+    border: none;
+    border-radius: 20px;
+    background-color: rgb(214, 14, 14);
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    border: 2px solid rgb(180, 10, 10);
+    transition: 0.2s;
+}
+
+#carrinho:hover {
+    background-color: rgb(180, 10, 10);
+    transform: translateY(-2px);
+}
+
 #categoria {
     margin: 20px 0;
     text-align: center;
@@ -121,6 +139,42 @@ header img {
 .card h2{
     min-height: 2.4em; /* reserva espaço equivalente a 2,4 vezes o tamanho da fonte do h2 */
     margin: 10px 0;
+}
+
+.carrinho {
+    position: fixed; /* fixa na tela */
+    top: 20px;
+    right: 20px;
+
+    width: 300px;
+    background-color: white;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.item-carrinho {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.item-carrinho img {
+    width: 70px;
+    height: 70px;
+    object-fit: cover;
+}
+
+.item-carrinho button {
+    padding: 4px 8px;
+    border: 1px solid #ddd;
+    background-color: white;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.item-carrinho p {
+    margin: 0;
 }
 
 .preco{
