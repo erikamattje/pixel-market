@@ -2,13 +2,33 @@ const container = document.querySelector("#produtos");
 const botoes = document.querySelectorAll(".categoria");
 const campoBusca = document.querySelector("#busca");
 
+const header = document.querySelector("header");
+
+const carrinhoContainer = document.createElement("div");
+carrinhoContainer.classList.add("carrinho-container"); //adiciona classe a div
+header.appendChild(carrinhoContainer);
+
 const areaCarrinho = document.createElement("div"); //cria a area do carrinho
 areaCarrinho.classList.add("carrinho");
-document.body.appendChild(areaCarrinho); // coloca a area do carrinho dentro de body
-areaCarrinho.innerHTML = "<h2>Meu carrinho</h2>";
 
 const carrinho = [];
 const botaoCarrinho = document.querySelector("#carrinho"); //seleciona o elemento do carrinho no HTML
+
+carrinhoContainer.appendChild(botaoCarrinho);
+carrinhoContainer.appendChild(areaCarrinho);
+areaCarrinho.innerHTML = "<h2>Meu carrinho</h2>";
+
+
+function atualizarCarrinho(){
+    let totalItens = 0;
+
+    for (const itemCarrinho of carrinho){
+        totalItens += itemCarrinho.quantidade;
+    }
+
+    const textoCarrinho = botaoCarrinho.querySelector("span");
+    textoCarrinho.textContent = `Carrinho (${totalItens})`;
+}
 
 function mostrarCarrinho(){
     areaCarrinho.innerHTML = "";
@@ -25,52 +45,87 @@ function mostrarCarrinho(){
         nome.textContent = itemCarrinho.produto.nome;
         item.appendChild(nome);
 
-        const quantidade = document.createElement("p"); // cria um elemento <p> para mostrar a quantidade do produto.
-        quantidade.textContent = itemCarrinho.quantidade; // coloca dentro do <p> o número da quantidade daquele item no carrinho.
+        const controleQuantidade = document.createElement("div");
+        controleQuantidade.classList.add("controle-quantidade");      
         
-
         const diminuir = document.createElement("button");
         diminuir.textContent = "-";
-        item.appendChild(diminuir);
+        controleQuantidade.appendChild(diminuir);
 
-        item.appendChild(quantidade); // coloca o elemento <p> da quantidade dentro do elemento "item" do carrinho.
+        const quantidade = document.createElement("p"); // cria um elemento <p> para mostrar a quantidade do produto.
+        quantidade.textContent = itemCarrinho.quantidade; // coloca dentro do <p> o número da quantidade daquele item no carrinho.
+        controleQuantidade.appendChild(quantidade); // coloca o elemento <p> da quantidade dentro do elemento "item" do carrinho.
 
         const aumentar = document.createElement("button")
         aumentar.textContent = "+";
-        item.appendChild(aumentar)
+        controleQuantidade.appendChild(aumentar);
+
+        item.appendChild(controleQuantidade);
 
         areaCarrinho.appendChild(item);
 
-        aumentar.addEventListener("click", () => { //para cada botão + de cada produto será associado esse evento.
+        aumentar.addEventListener("click", (evento) => { //para cada botão + de cada produto será associado esse evento.
+            evento.stopPropagation();
+
             itemCarrinho.quantidade += 1;
+            atualizarCarrinho();
             mostrarCarrinho();
+            
         });
 
-        diminuir.addEventListener("click", () => {
+        diminuir.addEventListener("click", (evento) => {
+            evento.stopPropagation();
+            
             if (itemCarrinho.quantidade > 1){
                 itemCarrinho.quantidade -= 1;
             }
+            atualizarCarrinho();
             mostrarCarrinho();
         });
+
+        const preco = document.createElement("p");
+        preco.textContent = itemCarrinho.produto.preco.toLocaleString( "pt-BR", {
+            style: "currency",
+            currency: "BRL"
+        });
+        item.appendChild(preco);
+
+        const subtotal = document.createElement("p"); //elemento HTML
+        const valorSubtotal = itemCarrinho.quantidade * itemCarrinho.produto.preco; //valor calculado
+        subtotal.textContent = valorSubtotal.toLocaleString( "pt-BR", { //coloca dentro de p e formata na moeda correta
+            style: "currency",
+            currency: "BRL"
+        });
+        item.appendChild(subtotal);
 
         const remover = document.createElement("button")
         remover.textContent = "X";
         item.appendChild(remover);
 
-        remover.addEventListener("click", () => {
+        remover.addEventListener("click", (evento) => {
+            evento.stopPropagation();
+            
             const indice = carrinho.findIndex(
                 item => item.produto.nome === itemCarrinho.produto.nome
             )
 
             carrinho.splice(indice, 1);
+            atualizarCarrinho();
             mostrarCarrinho();
-        });
+        });     
 
     }
 };
 
 botaoCarrinho.addEventListener("click", () => {
-   mostrarCarrinho();
+    areaCarrinho.classList.toggle("aberto");
+    mostrarCarrinho();
+});
+
+document.addEventListener("click", (evento) => {
+    if (!carrinhoContainer.contains(evento.target)){ //o elemento que foi clicado esta fora de carrinhoContainer?
+        areaCarrinho.classList.remove("aberto"); 
+    } 
 });
 
 let categoriaSelecionada = "Todos";
@@ -145,6 +200,7 @@ fetch("produtos.json")
                             quantidade: 1
                         });
                     }
+                    atualizarCarrinho();
                     mostrarCarrinho();
                     
                 });

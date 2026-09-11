@@ -142,21 +142,33 @@ header img {
 }
 
 .carrinho {
-    position: fixed; /* fixa na tela */
-    top: 20px;
-    right: 20px;
+    display: none; /*oculta a area do carrinho*/
+    position: absolute;
+    top: 100%;
+    right: 0;
 
-    width: 300px;
+    width: 400px;
     background-color: white;
     padding: 20px;
     border-radius: 12px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
 
+.carrinho.aberto{
+    display: block; /*exibe a area do carrinho*/ 
+}
+
+.carrinho-container {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+}
+
 .item-carrinho {
     display: flex;
     align-items: center;
     gap: 20px;
+    flex-wrap: wrap;
 }
 
 .item-carrinho img {
