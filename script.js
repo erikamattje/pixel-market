@@ -33,6 +33,17 @@ function atualizarCarrinho(){
 function mostrarCarrinho(){
     areaCarrinho.innerHTML = "";
 
+    if (carrinho.length === 0){ //verifica se o carrinho esta vazio
+        areaCarrinho.innerHTML = `
+            <div class="carrinho-vazio">
+                <i data-lucide="shopping-cart"></i>
+                <h2>Seu carrinho está vazio</h2>
+                <p>Adicione produtos para vê-los aqui!</p>
+            </div>
+        `;
+        lucide.createIcons();
+    } 
+
     for (const itemCarrinho of carrinho){ //percorre cada produto/item adicionado ao array carrinho
         const item = document.createElement("div");
         item.classList.add("item-carrinho");
