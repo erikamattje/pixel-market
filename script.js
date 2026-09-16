@@ -67,7 +67,10 @@ function mostrarCarrinho(){
         aumentar.addEventListener("click", (evento) => { //para cada botão + de cada produto será associado esse evento.
             evento.stopPropagation();
 
-            itemCarrinho.quantidade += 1;
+            if (itemCarrinho.quantidade < itemCarrinho.produto.estoque){ //verifica o estoque do produto
+                itemCarrinho.quantidade +=1;
+            }
+
             atualizarCarrinho();
             mostrarCarrinho();
             
