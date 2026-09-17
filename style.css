@@ -155,7 +155,7 @@ header img {
     top: 100%;
     right: 0;
 
-    width: 400px;
+    width: 600px;
     background-color: white;
     padding: 20px;
     border-radius: 12px;
@@ -194,17 +194,29 @@ header img {
     font-size: 14px;
 }
 
-.item-carrinho {
+.controle-quantidade {
     display: flex;
     align-items: center;
-    gap: 20px;
-    flex-wrap: wrap;
+    gap: 8px;
 }
 
-.item-carrinho img {
-    width: 70px;
-    height: 70px;
-    object-fit: cover;
+.controle-quantidade button:hover {
+    background-color: rgb(214, 14, 14);
+    color: white;
+}
+
+.item-carrinho {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 90px 90px 90px 40px; /* cria colunas para produto, quantidade, preço, subtotal e excluir, deixando o produto ocupar o espaço restante */
+    align-items: center;
+    gap: 15px;
+}
+
+.produto-carrinho img {
+    width: 90px;
+    height: 90px;
+    object-fit: contain;
+    flex-shrink: 0;
 }
 
 .item-carrinho button {
@@ -226,6 +238,13 @@ header img {
     margin: 0; /* retira margem padrão de p */
 }
 
+.produto-carrinho {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    min-width: 0;
+}
+
 .info{
     display: flex;
     gap: 15px;
@@ -236,6 +255,25 @@ header img {
 
 .info p{
     margin: 0;
+}
+
+.remover {
+    color: rgb(214, 14, 14);
+    font-weight: bold;
+    font-size: 12px;
+    border: none;
+    background: none;
+    padding: 0;
+    width: 20px;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.remover:hover {
+    background-color: rgb(214, 14, 14);
+    color: white;
 }
 
 .sem-produtos {

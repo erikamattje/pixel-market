@@ -48,13 +48,16 @@ function mostrarCarrinho(){
         const item = document.createElement("div");
         item.classList.add("item-carrinho");
 
+        const produtoCarrinho = document.createElement("div");
+        produtoCarrinho.classList.add("produto-carrinho");
+
         const imagem = document.createElement("img");
         imagem.src = itemCarrinho.produto.imagem;        
-        item.appendChild(imagem);
+        produtoCarrinho.appendChild(imagem);
 
         const nome = document.createElement("p");
         nome.textContent = itemCarrinho.produto.nome;
-        item.appendChild(nome);
+        produtoCarrinho.appendChild(nome);
 
         const controleQuantidade = document.createElement("div");
         controleQuantidade.classList.add("controle-quantidade");      
@@ -65,12 +68,13 @@ function mostrarCarrinho(){
 
         const quantidade = document.createElement("p"); // cria um elemento <p> para mostrar a quantidade do produto.
         quantidade.textContent = itemCarrinho.quantidade; // coloca dentro do <p> o número da quantidade daquele item no carrinho.
-        controleQuantidade.appendChild(quantidade); // coloca o elemento <p> da quantidade dentro do elemento "item" do carrinho.
+        controleQuantidade.appendChild(quantidade); // // coloca o <p> da quantidade dentro do controle de quantidade.
 
         const aumentar = document.createElement("button")
         aumentar.textContent = "+";
         controleQuantidade.appendChild(aumentar);
 
+        item.appendChild(produtoCarrinho);
         item.appendChild(controleQuantidade);
 
         areaCarrinho.appendChild(item);
@@ -112,7 +116,8 @@ function mostrarCarrinho(){
         });
         item.appendChild(subtotal);
 
-        const remover = document.createElement("button")
+        const remover = document.createElement("button");
+        remover.classList.add("remover");
         remover.textContent = "X";
         item.appendChild(remover);
 
