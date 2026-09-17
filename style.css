@@ -91,14 +91,24 @@ header img {
     gap: 8px;
 }
 
+.adicionar:hover{
+    background-color: rgb(192, 1, 1);
+}
+
+.adicionar:disabled{
+    background-color: #ccc;
+    cursor: not-allowed;
+}
+
+.adicionar:disabled:hover{
+    background-color: #ccc;
+}
+
 .adicionar svg{
     width: 20px;
     height: 20px;
 }
 
-.adicionar:hover{
-    background-color: rgb(192, 1, 1);
-}
 
 .botao {
     padding: 10px 18px; /* cria espaço dentro do botão */

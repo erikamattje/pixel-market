@@ -30,6 +30,24 @@ function atualizarCarrinho(){
     textoCarrinho.textContent = `Carrinho (${totalItens})`;
 }
 
+function atualizarBotao(produto) {
+    const botaoAdicionar = document.querySelector(
+        `[data-produto="${produto.nome}"]`
+    );
+
+    let itemCarrinho = carrinho.find( // Procura o produto no carrinho
+        item => item.produto.nome === produto.nome
+    );
+
+    const quantidade = itemCarrinho?.quantidade ?? 0; // Se encontrou, pega a quantidade.Se não encontrou, considera quantidade 0.
+                    
+    if (quantidade === produto.estoque) { // Desabilita quando o carrinho atingir o estoque.
+        botaoAdicionar.disabled = true;
+    } else { // Mantém habilitado enquanto ainda houver estoque.
+        botaoAdicionar.disabled = false;
+    }
+}
+
 function mostrarCarrinho(){
     areaCarrinho.innerHTML = "";
 
@@ -86,6 +104,7 @@ function mostrarCarrinho(){
                 itemCarrinho.quantidade +=1;
             }
 
+            atualizarBotao(itemCarrinho.produto);
             atualizarCarrinho();
             mostrarCarrinho();
             
@@ -97,6 +116,8 @@ function mostrarCarrinho(){
             if (itemCarrinho.quantidade > 1){
                 itemCarrinho.quantidade -= 1;
             }
+
+            atualizarBotao(itemCarrinho.produto);
             atualizarCarrinho();
             mostrarCarrinho();
         });
@@ -129,6 +150,9 @@ function mostrarCarrinho(){
             )
 
             carrinho.splice(indice, 1);
+
+            atualizarBotao(itemCarrinho.produto);
+            
             atualizarCarrinho();
             mostrarCarrinho();
         });     
@@ -197,7 +221,7 @@ fetch("produtos.json")
                         <p>🎮 ${produto.categoria}</p>
                         <p>📦 ${produto.estoque} em estoque</p>
                     </div>
-                    <button class="botao adicionar">
+                    <button class="botao adicionar" data-produto="${produto.nome}">
                         <i data-lucide="shopping-cart"></i>
                         Adicionar ao carrinho
                     </button>
@@ -205,21 +229,30 @@ fetch("produtos.json")
                 container.appendChild(card); //adicione a div que esta em card, dentro de container
 
                 const botaoAdicionar = card.querySelector(".adicionar"); //procura elementos que tenham classe adicionar, somente dentro de card
+                
+                
 
                 botaoAdicionar.addEventListener("click", () => { //dentro do for para criar um evento em cada botão
-                    const itemCarrinho = carrinho.find(
-                        item => item.produto.nome === produto.nome //compara os numeros
+                    let itemCarrinho = carrinho.find(
+                        item => item.produto.nome === produto.nome //compara os nomes
                     );
 
                     if (itemCarrinho) {
                         itemCarrinho.quantidade += 1;
                     } else {
-                        carrinho.push({ //adiciona ao final do array
+                        const novoItem = {
                             produto: produto,
                             quantidade: 1
-                        });
-                    }
+                        }
+                        carrinho.push(novoItem) //adiciona ao final do array
+                        itemCarrinho = novoItem;                        
+                    
+                    };
+
+                    atualizarBotao(produto);
+
                     atualizarCarrinho();
+
                     mostrarCarrinho();
                     
                 });
