@@ -215,6 +215,17 @@ header img {
     color: white;
 }
 
+.controle-quantidade button:disabled {
+    background-color: #ccc;
+    color: #777;
+    cursor: not-allowed;
+}
+
+.controle-quantidade button:disabled:hover {
+    background-color: #ccc;
+    color: #777;
+}
+
 .item-carrinho {
     display: grid;
     grid-template-columns: minmax(0, 1fr) 90px 90px 90px 40px; /* cria colunas para produto, quantidade, preço, subtotal e excluir, deixando o produto ocupar o espaço restante */

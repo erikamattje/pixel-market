@@ -90,6 +90,7 @@ function mostrarCarrinho(){
 
         const aumentar = document.createElement("button")
         aumentar.textContent = "+";
+        aumentar.disabled = itemCarrinho.quantidade === itemCarrinho.produto.estoque;
         controleQuantidade.appendChild(aumentar);
 
         item.appendChild(produtoCarrinho);
@@ -152,7 +153,7 @@ function mostrarCarrinho(){
             carrinho.splice(indice, 1);
 
             atualizarBotao(itemCarrinho.produto);
-            
+
             atualizarCarrinho();
             mostrarCarrinho();
         });     
