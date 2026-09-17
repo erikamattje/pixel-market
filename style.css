@@ -154,12 +154,12 @@ header img {
     position: absolute;
     top: 100%;
     right: 0;
-
     width: 600px;
     background-color: white;
     padding: 20px;
     border-radius: 12px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    z-index: 10;
 }
 
 .carrinho.aberto{
