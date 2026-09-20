@@ -285,3 +285,19 @@ fetch("produtos.json")
     });
 
     });
+
+
+    const faixa = document.querySelector(".faixa-mensagem");    
+
+    const velocidade = 100;   
+    
+    function ajustarVelocidade(){
+        const distancia = window.innerWidth; //largura atual da janela do navegador em pixels
+        const duracao = distancia / velocidade;
+
+        faixa.style.animation = `passar ${duracao}s linear infinite`;
+    }
+
+    ajustarVelocidade();
+    window.addEventListener("resize", ajustarVelocidade);
+    

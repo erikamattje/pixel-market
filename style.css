@@ -179,7 +179,7 @@ header img {
 
 .carrinho-container {
     position: absolute;
-    top: 20px;
+    top: 40px;
     right: 20px;
 }
 
@@ -239,8 +239,8 @@ header img {
 
 .faixa-mensagem {
     display: flex;
-    width: max-content;
-    animation: passar 12s linear infinite;
+    width: max-content;   
+
 }
 
 .mensagem {
@@ -255,7 +255,7 @@ header img {
 }
 
 .mensagem span{
-    margin-left: clamp(40px, 8vw, 200px);
+    margin-left: clamp(80px, 10vw, 300px); /*minimo, valor preferido, máximo  */
 }
 
 @keyframes passar {
