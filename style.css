@@ -3,7 +3,7 @@
 body{
     font-family: Arial, sans-serif;
     margin: 0; /*remove margem do navegador*/
-    padding: 40px; /* espaço interno ao redor do conteudo */
+    padding: 0 40px 40px; /* 0 em cima, 40 nas laterais e 40 embaixo */
 }
 
 h1 {
@@ -23,7 +23,8 @@ header {
 
 header img {
     width: 350px;
-    height: auto;     
+    height: auto; 
+    margin-top: 15px;    
 }
 
 #produtos{
@@ -224,6 +225,47 @@ header img {
 .controle-quantidade button:disabled:hover {
     background-color: #ccc;
     color: #777;
+}
+
+.faixa-promocional {
+    background-color: rgb(214, 14, 14);
+    color: white;
+    overflow: hidden;
+    margin-left: -40px;
+    margin-right: -40px;
+    display: flex;
+    
+}
+
+.faixa-mensagem {
+    display: flex;
+    width: max-content;
+    animation: passar 12s linear infinite;
+}
+
+.mensagem {
+    width: 100vw;
+    flex-shrink: 0;
+    box-sizing: border-box;
+    padding: 6px 40px;
+    font-size: 14px;
+    font-weight: bold;
+    white-space: nowrap;
+    text-align: center;
+}
+
+.mensagem span{
+    margin-left: clamp(40px, 8vw, 200px);
+}
+
+@keyframes passar {
+    from {
+        transform: translateX(0);
+    }
+
+    to {
+        transform: translateX(-100vw);
+    }
 }
 
 .item-carrinho {
