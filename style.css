@@ -423,6 +423,10 @@ header img {
         display: none; /* esconde a palavra carrinho */
     }
 
+    #carrinho:hover {
+    transform: none; /* remove o efeito de subir no celular */
+}
+
     #produtos {
         grid-template-columns: 1fr; /* No celular, coloca os produtos em uma única coluna*/
     }
@@ -463,7 +467,9 @@ header img {
 
     .mensagem {
         padding: 6px 10px;
-        font-size: 12px;        
+        font-size: 12px; 
+        -webkit-text-size-adjust: 100%; /* impede o iOS de aumentar automaticamente o texto */
+        text-size-adjust: 100%; /* mantém o comportamento consistente em outros navegadores */       
     }
 
     .mensagem span {
