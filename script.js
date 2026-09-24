@@ -26,8 +26,8 @@ function atualizarCarrinho(){
         totalItens += itemCarrinho.quantidade;
     }
 
-    const textoCarrinho = botaoCarrinho.querySelector("span");
-    textoCarrinho.textContent = `Carrinho (${totalItens})`;
+    const quantidadeCarrinho = botaoCarrinho.querySelector(".quantidade-carrinho"); // seleciona somente o span da quantidade
+    quantidadeCarrinho.textContent = totalItens > 0 ? `(${totalItens})` : ""; // mostra a quantidade somente quando houver itens
 }
 
 function atualizarBotao(produto) {
@@ -60,7 +60,11 @@ function mostrarCarrinho(){
                 <p>Adicione produtos para vê-los aqui!</p>
             </div>
         `;
-        lucide.createIcons();
+        lucide.createIcons({
+            root: areaCarrinho
+        });
+
+        return; //encerra a função quando o carrinho estiver vazio
     } 
 
     const total = carrinho.reduce((acumulador, itemCarrinho) => {
@@ -79,6 +83,7 @@ function mostrarCarrinho(){
         produtoCarrinho.appendChild(imagem);
 
         const nome = document.createElement("p");
+        nome.classList.add("nome-carrinho");
         nome.textContent = itemCarrinho.produto.nome;
         produtoCarrinho.appendChild(nome);
 
@@ -129,18 +134,21 @@ function mostrarCarrinho(){
         });
 
         const preco = document.createElement("p");
-        preco.textContent = itemCarrinho.produto.preco.toLocaleString( "pt-BR", {
+        preco.classList.add("preco-carrinho");
+        preco.textContent = `Preço: ${itemCarrinho.produto.preco.toLocaleString( "pt-BR", {
             style: "currency",
             currency: "BRL"
-        });
+        })}`;
         item.appendChild(preco);
 
         const subtotal = document.createElement("p"); //elemento HTML
+        subtotal.classList.add("subtotal");
+
         const valorSubtotal = itemCarrinho.quantidade * itemCarrinho.produto.preco; //valor calculado
-        subtotal.textContent = valorSubtotal.toLocaleString( "pt-BR", { //coloca dentro de p e formata na moeda correta
+        subtotal.textContent = `Subtotal: ${valorSubtotal.toLocaleString( "pt-BR", { //coloca dentro de p e formata na moeda correta
             style: "currency",
             currency: "BRL"
-        });
+        })}`;
         item.appendChild(subtotal);
 
         const remover = document.createElement("button");
@@ -150,6 +158,7 @@ function mostrarCarrinho(){
 
         remover.addEventListener("click", (evento) => {
             evento.stopPropagation();
+            
             
             const indice = carrinho.findIndex(
                 item => item.produto.nome === itemCarrinho.produto.nome
@@ -188,8 +197,12 @@ function mostrarCarrinho(){
 };
 
 botaoCarrinho.addEventListener("click", () => {
-    areaCarrinho.classList.toggle("aberto");
-    mostrarCarrinho();
+    if (areaCarrinho.classList.contains("aberto")) {
+        areaCarrinho.classList.remove("aberto"); // fecha o carrinho
+    } else {
+        areaCarrinho.classList.add("aberto"); // abre o carrinho
+        mostrarCarrinho(); // atualiza o conteúdo ao abrir
+    }
 });
 
 document.addEventListener("click", (evento) => {
@@ -313,12 +326,11 @@ fetch("produtos.json")
     });
 
 
-    const faixa = document.querySelector(".faixa-mensagem");    
-
+    const faixa = document.querySelector(".faixa-mensagem"); 
     const velocidade = 100;   
     
     function ajustarVelocidade(){
-        const distancia = window.innerWidth; //largura atual da janela do navegador em pixels
+        const distancia = faixa.firstElementChild.offsetWidth; // pega a largura da primeira mensagem
         const duracao = distancia / velocidade;
 
         faixa.style.animation = `passar ${duracao}s linear infinite`;

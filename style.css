@@ -144,10 +144,7 @@ header img {
     flex-direction: column;
 }
 
-.card:hover{
-    transform: translateY(-4px); /*card sobe*/
-    box-shadow: 0 8px 20px rgba(0, 0, 0 , 0.12); /* sombra ao passar o mouse*/
-}
+
 
 .card img{
     height: 250px;
@@ -262,32 +259,6 @@ header img {
     transform: translateY(-2px);
 }
 
-
-.mensagem {
-    width: 100vw;
-    flex-shrink: 0;
-    box-sizing: border-box;
-    padding: 6px 40px;
-    font-size: 14px;
-    font-weight: bold;
-    white-space: nowrap;
-    text-align: center;
-}
-
-.mensagem span{
-    margin-left: clamp(80px, 10vw, 300px); /*minimo, valor preferido, máximo  */
-}
-
-@keyframes passar {
-    from {
-        transform: translateX(0);
-    }
-
-    to {
-        transform: translateX(-100vw);
-    }
-}
-
 .item-carrinho {
     display: grid;
     grid-template-columns: minmax(0, 1fr) 90px 90px 90px 40px; /* cria colunas para produto, quantidade, preço, subtotal e excluir, deixando o produto ocupar o espaço restante */
@@ -295,11 +266,16 @@ header img {
     gap: 15px;
 }
 
-.produto-carrinho img {
-    width: 90px;
-    height: 90px;
-    object-fit: contain;
-    flex-shrink: 0;
+.info{
+    display: flex;
+    gap: 15px;
+    justify-content: space-between;
+    font-size: 13px;
+    color: #666;
+}
+
+.info p{
+    margin: 0;
 }
 
 .item-carrinho button {
@@ -328,17 +304,38 @@ header img {
     min-width: 0;
 }
 
-.info{
-    display: flex;
-    gap: 15px;
-    justify-content: space-between;
-    font-size: 13px;
-    color: #666;
+.produto-carrinho img {
+    width: 90px;
+    height: 90px;
+    object-fit: contain;
+    flex-shrink: 0;
 }
 
-.info p{
-    margin: 0;
+.mensagem {
+    width: max-content;
+    flex-shrink: 0;
+    box-sizing: border-box;
+    padding: 6px 40px;
+    font-size: 14px;
+    font-weight: bold;
+    white-space: nowrap;
+    text-align: center;
 }
+
+.mensagem span{
+    margin-left: clamp(80px, 10vw, 300px); /*minimo, valor preferido, máximo  */
+}
+
+@keyframes passar {
+    from {
+        transform: translateX(0);
+    }
+
+    to {
+        transform: translateX(-50%); /* move a faixa 50% da sua largura para a esquerda */
+    }
+}
+
 
 .remover {
     color: rgb(214, 14, 14);
@@ -381,6 +378,10 @@ header img {
     margin-top: 0; /*  */
 }
 
+.subtotal {
+    font-weight: bold;    
+}
+
 .total-carrinho {
     margin-top: 20px;
     padding-top: 15px;
@@ -391,3 +392,125 @@ header img {
     color: rgb(214, 14, 14)
 }
 
+@media (hover: hover){ /* aplica estas regras apenas em dispositivos que suportam hover */
+    .card:hover {
+        transform: translateY(-4px); /*card sobe*/
+        box-shadow: 0 8px 20px rgba(0, 0, 0 , 0.12); /* sombra ao passar o mouse*/
+    }
+}
+
+
+@media (max-width: 600px){
+    body {
+        padding: 0 16px 30px; /* Diminui o espaço das laterais no celular.*/
+    }
+
+    h1 {
+        font-size: 42px;
+    }
+
+    header img {
+        width: 250px; /* Diminui a largura da logo no celular. */
+        margin-top: 40px;
+    }
+
+    #busca {
+        width: 100%;
+        max-width: 350px;
+    }
+
+    #carrinho .texto-carrinho {
+        display: none; /* esconde a palavra carrinho */
+    }
+
+    #produtos {
+        grid-template-columns: 1fr; /* No celular, coloca os produtos em uma única coluna*/
+    }
+
+    .categoria {
+        margin-bottom: 8px; /* Cria espaço abaixo dos botões*/
+    }
+
+    .carrinho {
+        width: calc(100vw - 32px);
+        box-sizing: border-box;
+        padding: 16px;
+        min-height: 180px;
+    }
+
+    .carrinho-vazio {
+        padding: 20px; /* espaço interno */
+    }
+    
+    .controle-quantidade {
+        grid-column: 1; /* coloca o controle de quantidade na segunda coluna*/
+    }
+
+    .faixa-promocional { 
+        margin-left: -16px;
+        margin-right: -16px;
+    }
+
+    .item-carrinho {
+        grid-template-columns: 90px 1fr 30px; /* cria 3 colunas */
+        gap: 8px 12px; /* espaço entre as linhas e entre as colunas */
+    }
+
+    .item-carrinho + .item-carrinho {
+        border-top: 1px solid #ddd; /* cria a linha entre um produto e o próximo */
+        
+    }
+
+    .mensagem {
+        padding: 6px 10px;
+        font-size: 12px;        
+    }
+
+    .mensagem span {
+        margin-left: 20px;
+    }
+
+    .nome-carrinho {
+        grid-column: 2; /* coloca o nome do produto na segunda coluna*/
+        min-width: 0; /* permite que o texto use corretamente o espaço disponível */
+        transform: translateY(-20px);
+        
+    }
+
+    .preco-carrinho {
+        grid-column: 2; /* coloca o preço na segunda coluna */
+        transform: translateY(-40px);
+    }
+
+    .produto-carrinho {
+        display: contents; /* permite que a imagem e o nome participem diretamente do grid do item */
+    }
+
+    .produto-carrinho img {
+        grid-column: 1; /* coloca a imagem na primeira coluna */
+    }
+
+    .quantidade-carrinho {
+        display: inline; /* mantém a quantidade visível */
+    }
+
+    .remover {
+        grid-column: 3; /* coloca o botão remover na terceira coluna */
+        grid-row: 1; /* posiciona na primeira linha */
+        align-self: center; /* centraliza o botão verticalmente */
+        transform: translateY(30px);
+    }
+
+    .sem-produtos {
+        width: 100%; /* faz a mensagem ocupar a largura disponível no celular */
+        padding: 30px 16px; /* reduz o espaço interno no celular */
+    }
+
+    .subtotal {
+        grid-column: 2; /* coloca o subtotal na segunda coluna*/
+        transform: translateY(-40px);
+    }
+
+
+
+}
