@@ -49,6 +49,7 @@ function atualizarBotao(produto) {
 }
 
 function mostrarCarrinho(){
+    
     areaCarrinho.innerHTML = "";
 
     if (carrinho.length === 0){ //verifica se o carrinho esta vazio
@@ -61,6 +62,10 @@ function mostrarCarrinho(){
         `;
         lucide.createIcons();
     } 
+
+    const total = carrinho.reduce((acumulador, itemCarrinho) => {
+        return acumulador + (itemCarrinho.produto.preco * itemCarrinho.quantidade)
+    }, 0);
 
     for (const itemCarrinho of carrinho){ //percorre cada produto/item adicionado ao array carrinho
         const item = document.createElement("div");
@@ -159,6 +164,27 @@ function mostrarCarrinho(){
         });     
 
     }
+
+    const totalCarrinho = document.createElement("p");
+    totalCarrinho.classList.add("total-carrinho");
+
+    totalCarrinho.textContent = `Total: ${total.toLocaleString("pt-BR",{
+        style: "currency",
+        currency: "BRL"
+
+    })}`;
+    areaCarrinho.appendChild(totalCarrinho);
+
+    const finalizarPedido = document.createElement("button");
+    finalizarPedido.textContent = "Finalizar Pedido";
+    finalizarPedido.classList.add("finalizar-pedido");
+
+    areaCarrinho.appendChild(finalizarPedido);
+
+    finalizarPedido.addEventListener("click", ()=> {
+        alert("Pedido realizado com sucesso! 🎮");
+    });
+
 };
 
 botaoCarrinho.addEventListener("click", () => {

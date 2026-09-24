@@ -243,6 +243,26 @@ header img {
 
 }
 
+.finalizar-pedido{
+    width: 100%;
+    margin-top: 15px;
+    padding: 12px;
+    font-size: 16px;
+    background-color: rgb(214, 14, 14);
+    color: white;
+    border: 2px solid rgb(180, 10, 10);
+    border-radius: 20px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.finalizar-pedido:hover{
+    background-color: rgb(192, 1, 1);
+    transform: translateY(-2px);
+}
+
+
 .mensagem {
     width: 100vw;
     flex-shrink: 0;
@@ -361,5 +381,13 @@ header img {
     margin-top: 0; /*  */
 }
 
-
+.total-carrinho {
+    margin-top: 20px;
+    padding-top: 15px;
+    border-top: 2px solid #ddd;
+    font-size: 20px;
+    font-weight: bold;
+    text-align: right;
+    color: rgb(214, 14, 14)
+}
 
