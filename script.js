@@ -274,10 +274,10 @@ fetch("produtos.json")
 
                 botaoAdicionar.addEventListener("click", () => { //dentro do for para criar um evento em cada botão
                     let itemCarrinho = carrinho.find(
-                        item => item.produto.nome === produto.nome //compara os nomes
+                        item => item.produto.nome === produto.nome // procura no carrinho se o produto clicado já existe
                     );
 
-                    if (itemCarrinho) {
+                    if (itemCarrinho) { // se o produto já existe, aumenta a quantidade em 1
                         itemCarrinho.quantidade += 1;
                     } else {
                         const novoItem = {
@@ -294,6 +294,11 @@ fetch("produtos.json")
                     atualizarCarrinho();
 
                     mostrarCarrinho();
+
+                    botaoCarrinho.classList.add("animar");
+                    setTimeout(() => {
+                        botaoCarrinho.classList.remove("animar");
+                    }, 400); // 400: espera 400 milissegundos, ou 0,4 segundo
                     
                 });
 

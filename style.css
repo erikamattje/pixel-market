@@ -71,6 +71,17 @@ header img {
     transform: translateY(-2px);
 }
 
+#carrinho.animar {
+    animation: carrinhoPulando 0.4s ease; /* nome, tempo, ease faz a animação ser suave*/
+}
+
+@keyframes carrinhoPulando {
+    0% { transform: translateY(0); }
+    40% { transform: translateY(-8px);}
+    70% { transform: translateY(2px); }
+    100% { transform: translateY(0) }
+}
+
 #carrinho svg{
     width: 20px;
     height: 20px;
@@ -112,7 +123,7 @@ header img {
 
 
 .botao {
-    padding: 10px 18px; /* cria espaço dentro do botão */
+    padding: 10px 18px; /* cria espaço dentro do botão, 10px em cima e embaixo, 18px a esquerda e direita */
     border-radius: 20px;
     font-size: 16px; /* tamanho da fonte */
     font-weight: bold;
@@ -419,10 +430,22 @@ header img {
         max-width: 350px;
     }
 
+    #carrinho {   
+        display: flex;
+        align-items: center;  
+        justify-content: center;
+        gap: 6px;
+        font-size: 12px;
+    }
+
     #carrinho .texto-carrinho {
         display: none; /* esconde a palavra carrinho */
     }
 
+    #carrinho .quantidade-carrinho:empty {
+        display: none; /* quando o indicador está vazio, não ocupar espaço dentro do botão */
+    }
+    
     #carrinho:hover {
     transform: none; /* remove o efeito de subir no celular */
 }
